@@ -48,8 +48,6 @@ export function ModalPage() {
     secondaryAction: showSecondary ? { label: 'Cancel', onClick: close } : undefined,
   }
 
-  const inputCls = 'h-8 px-(--padding-M) rounded-(--radius-S) border border-(--border-default) text-sm text-(--fg-primary) bg-(--bg-primary) outline-none focus:border-(--border-brand) w-full'
-
   const triggerCls = 'inline-flex items-center justify-center border-0 rounded-(--radius-S) transition-colors cursor-pointer whitespace-nowrap py-(--padding-S) pl-(--padding-M) pr-(--padding-L) text-[16px] leading-6 bg-(--bg-action) text-(--text-action_white) hover:bg-(--bg-action_hover)'
   const triggerFont = { fontFamily: 'var(--font-primary)', fontWeight: 800 }
 

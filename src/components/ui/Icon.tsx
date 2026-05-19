@@ -53,7 +53,7 @@ import React from 'react'
 type TablerIconName = keyof typeof TablerIcons
 
 export interface IconProps {
-  name: TablerIconName
+  name: TablerIconName | string
   size?: number
   stroke?: number
   className?: string
@@ -61,7 +61,8 @@ export interface IconProps {
 }
 
 export function Icon({ name, size = 24, stroke = 1.5, className, color }: IconProps) {
-  const IconComponent = TablerIcons[name] as React.ComponentType<any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const IconComponent = (TablerIcons as unknown as Record<string, React.ComponentType<any>>)[name]
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found in Tabler Icons`)
     return null

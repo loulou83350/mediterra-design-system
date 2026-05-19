@@ -66,19 +66,18 @@ export function Design() {
         <Section title="Button">
           <div className="flex flex-col gap-(--spacing-m)">
             <Row>
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="destructive">Destructive</Button>
+              <Button variant="Primary">Primary</Button>
+              <Button variant="Secondary">Secondary</Button>
+              <Button variant="Tertiary">Tertiary</Button>
+              <Button variant="Quaterny">Quaterny</Button>
             </Row>
             <Row>
-              <Button variant="primary" size="sm">Small</Button>
-              <Button variant="primary" size="md">Medium</Button>
-              <Button variant="primary" size="lg">Large</Button>
+              <Button variant="Primary" small>Small</Button>
+              <Button variant="Primary">Large</Button>
             </Row>
             <Row>
-              <Button variant="primary" disabled>Disabled</Button>
-              <Button variant="secondary" disabled>Disabled</Button>
+              <Button variant="Primary" disabled>Disabled</Button>
+              <Button variant="Secondary" disabled>Disabled</Button>
             </Row>
           </div>
         </Section>
@@ -123,8 +122,8 @@ export function Design() {
                 Une carte avec un badge dans le header.
               </p>
               <div className="mt-(--spacing-l) flex gap-(--spacing-s)">
-                <Button size="sm" variant="primary">Action</Button>
-                <Button size="sm" variant="ghost">Annuler</Button>
+                <Button small variant="Primary">Action</Button>
+                <Button small variant="Tertiary">Annuler</Button>
               </div>
             </Card>
           </div>

@@ -1,4 +1,4 @@
-import type { ReactNode, CSSProperties } from 'react'
+import type { ReactNode } from 'react'
 import { Icon } from './Icon'
 import { AvatarLabel } from './Avatar'
 

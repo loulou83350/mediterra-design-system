@@ -6,7 +6,7 @@ export function TextFieldPage() {
   const [label, setLabel]               = useState('Label')
   const [showLabel, setShowLabel]       = useState(true)
   const [placeholder, setPlaceholder]   = useState("I'm a placeholder")
-  const [helperText, setHelperText]     = useState("I'm an information")
+  const [helperText, _setHelperText]    = useState("I'm an information")
   const [showHelper, setShowHelper]     = useState(true)
   const [errorMsg, setErrorMsg]         = useState("I'm an error message")
   const [error, setError]               = useState(false)

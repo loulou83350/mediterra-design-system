@@ -3,7 +3,6 @@ import { Checkbox } from '../components/ui/Checkbox'
 import type { CheckboxState } from '../components/ui/Checkbox'
 import { ComponentPage, Control, ControlSelect, ControlToggle } from './ComponentLayout'
 
-const STATES: CheckboxState[] = ['off', 'on', 'partial']
 const STATE_LABELS: Record<CheckboxState, string> = { off: 'Off', on: 'On', partial: 'Partial' }
 
 export function CheckboxPage() {
