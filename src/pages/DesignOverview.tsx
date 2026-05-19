@@ -1,102 +1,152 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { Badge } from '../components/ui/Badge'
-import { Button } from '../components/ui/Button'
 import { Icon } from '../components/ui/Icon'
 
+// ─── Data — mirrors sidebar structure ────────────────────────────────────────
+
 const foundations = [
-  { to: '/design/foundations/colors',     label: 'Colors',      desc: '77 semantic tokens · primitives → semantic', icon: 'IconPalette' as const },
-  { to: '/design/foundations/typography', label: 'Typography',  desc: 'Wanted Sans · Open Sans · 4 levels',         icon: 'IconLetterCase' as const },
-  { to: '/design/foundations/icons',      label: 'Icons',       desc: 'Tabler Icons · single-file abstraction',     icon: 'IconSticker' as const },
+  { to: '/design/foundations/colors',     label: 'Colors',     icon: 'IconPalette',     desc: '77 semantic tokens' },
+  { to: '/design/foundations/typography', label: 'Typography', icon: 'IconLetterCase',  desc: 'Wanted Sans · Open Sans' },
+  { to: '/design/foundations/icons',      label: 'Icons',      icon: 'IconSticker',     desc: 'Tabler Icons' },
 ]
 
-const components = [
-  { to: '/design/button', label: 'Button', desc: '4 types · 2 sizes · Invert · Icon Button', badge: 'brand' as const },
-  { to: '/design/badge',  label: 'Badge',  desc: '5 variants · brand · success · warning · error', badge: 'brand' as const },
-  { to: '/design/input',  label: 'Input',  desc: 'Label · hint · error · password · search states', badge: 'brand' as const },
-  { to: '/design/card',   label: 'Card',   desc: 'Surface container', badge: 'brand' as const },
+const componentGroups = [
+  {
+    label: 'Actions',
+    icon: 'IconPointer',
+    items: [
+      { to: '/design/button',             label: 'Button' },
+      { to: '/design/destructive-button', label: 'Destructive Button' },
+    ],
+  },
+  {
+    label: 'Inputs',
+    icon: 'IconForms',
+    items: [
+      { to: '/design/text-field',  label: 'Text Field' },
+      { to: '/design/password',    label: 'Password' },
+      { to: '/design/otp',         label: 'Pin Code' },
+      { to: '/design/select',      label: 'Dropdown' },
+      { to: '/design/numeric',     label: 'Numeric Input' },
+      { to: '/design/textarea',    label: 'Text Area' },
+      { to: '/design/multiselect', label: 'Multi Select' },
+      { to: '/design/phone',       label: 'Phone Number' },
+      { to: '/design/credit-card', label: 'Credit Card' },
+      { to: '/design/file-upload', label: 'File Upload' },
+    ],
+  },
+  {
+    label: 'Controls',
+    icon: 'IconToggleLeft',
+    items: [
+      { to: '/design/checkbox', label: 'Checkbox' },
+      { to: '/design/switch',   label: 'Switch' },
+    ],
+  },
+  {
+    label: 'Display',
+    icon: 'IconLayoutGrid',
+    items: [
+      { to: '/design/avatar',        label: 'Avatar' },
+      { to: '/design/badge',         label: 'Badge' },
+      { to: '/design/card',          label: 'Card' },
+      { to: '/design/tag',           label: 'Tag' },
+      { to: '/design/chip',          label: 'Chip' },
+      { to: '/design/progress-bar',  label: 'Progress Bar' },
+      { to: '/design/list-item',     label: 'List Item' },
+    ],
+  },
+  {
+    label: 'Feedback',
+    icon: 'IconBell',
+    items: [
+      { to: '/design/alert',             label: 'Alert' },
+      { to: '/design/notification',      label: 'Notification' },
+      { to: '/design/tips',              label: 'Tips' },
+      { to: '/design/modal',             label: 'Modal & Drawer' },
+      { to: '/design/notification-item', label: 'Notification Item' },
+      { to: '/design/global-alert',      label: 'Global Alert' },
+    ],
+  },
+  {
+    label: 'Progress',
+    icon: 'IconChartBar',
+    items: [
+      { to: '/design/stepper-horizontal', label: 'Horizontal Stepper' },
+      { to: '/design/stepper-vertical',   label: 'Vertical Stepper' },
+      { to: '/design/stepper-circular',   label: 'Circular Stepper' },
+    ],
+  },
+  {
+    label: 'Navigation',
+    icon: 'IconMap',
+    items: [
+      { to: '/design/header-mobile', label: 'Header Mobile' },
+      { to: '/design/bottom-bar',    label: 'Bottom Bar' },
+      { to: '/design/tab-bar',       label: 'Tab Bar' },
+      { to: '/design/sidebar-nav',   label: 'Sidebar Navigation' },
+      { to: '/design/banner',        label: 'Banner' },
+    ],
+  },
 ]
 
-const keyTokens = [
-  { name: '--primary',        value: '#0baeec', label: 'Brand' },
-  { name: '--bg-page',        value: '#f7f9fc', label: 'Page' },
-  { name: '--bg-primary',     value: '#ffffff', label: 'Surface' },
-  { name: '--fg-primary',     value: '#1a202c', label: 'Text' },
-  { name: '--border-default', value: '#e2e7f0', label: 'Border' },
-  { name: '--bg-action',      value: '#0baeec', label: 'Action' },
-]
+const totalComponents = componentGroups.reduce((acc, g) => acc + g.items.length, 0)
 
-function SectionHeader({ label, children }: { label: string; children?: React.ReactNode }) {
-  return (
-    <div className="flex items-center justify-between mb-(--gap-L)">
-      <h2 style={{ fontFamily: 'var(--font-primary)', fontSize: 20, lineHeight: '28px', fontWeight: 800 }}>
-        {label}
-      </h2>
-      {children}
-    </div>
-  )
-}
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export function DesignOverview() {
   return (
-    <div className="p-(--padding-XXXL) flex flex-col gap-(--gap-XXXL) max-w-4xl">
+    <div className="p-(--padding-XXXL) flex flex-col gap-(--gap-XXXL) max-w-5xl">
 
       {/* Hero */}
-      <div className="flex flex-col gap-(--gap-M)">
-        <div>
-          <h1 style={{ fontFamily: 'var(--font-primary)', fontSize: 40, lineHeight: '48px', fontWeight: 800 }}>
-            Design System
-          </h1>
-          <p className="mt-(--gap-S) text-base text-(--fg-secondary) max-w-lg leading-relaxed">
-            Based on the UXProbe Figma file. Tokens → Tailwind CSS v4. Change the visual identity by editing a single file.
-          </p>
-        </div>
-        <div className="flex items-center gap-(--gap-M) mt-(--gap-XS)">
-          <span className="inline-flex items-center gap-(--gap-XS) text-xs text-(--fg-tertiary)">
-            <span className="w-2 h-2 rounded-full bg-(--bg-action) inline-block" />
-            Vite + React + TypeScript
-          </span>
-          <span className="inline-flex items-center gap-(--gap-XS) text-xs text-(--fg-tertiary)">
-            <span className="w-2 h-2 rounded-full bg-(--bg-succes_primary) inline-block" />
-            Tailwind CSS v4
-          </span>
-          <span className="inline-flex items-center gap-(--gap-XS) text-xs text-(--fg-tertiary)">
-            <span className="w-2 h-2 rounded-full bg-(--bg-warning_primary) inline-block" />
-            Tabler Icons
-          </span>
+      <div className="flex flex-col gap-(--gap-L)">
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 style={{ fontFamily: 'var(--font-primary)', fontSize: 40, lineHeight: '48px', fontWeight: 800 }}>
+              Mediterra
+            </h1>
+            <p style={{ fontFamily: 'var(--font-primary)', fontSize: 40, lineHeight: '48px', fontWeight: 800, color: 'var(--fg-quaterny)' }}>
+              Design System
+            </p>
+          </div>
+          <div className="flex flex-col items-end gap-(--gap-S) mt-(--gap-S)">
+            <div className="flex items-center gap-(--gap-M)">
+              <span className="flex items-center gap-(--gap-XS) text-xs text-(--fg-tertiary)">
+                <span className="w-1.5 h-1.5 rounded-full bg-(--bg-action) inline-block" />
+                Vite + React + TypeScript
+              </span>
+              <span className="flex items-center gap-(--gap-XS) text-xs text-(--fg-tertiary)">
+                <span className="w-1.5 h-1.5 rounded-full bg-(--bg-succes_primary) inline-block" />
+                Tailwind CSS v4
+              </span>
+              <span className="flex items-center gap-(--gap-XS) text-xs text-(--fg-tertiary)">
+                <span className="w-1.5 h-1.5 rounded-full bg-(--bg-warning_primary) inline-block" />
+                Tabler Icons
+              </span>
+            </div>
+            <p className="text-sm text-(--fg-tertiary)">
+              {foundations.length} foundations · {totalComponents} components
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Key tokens */}
-      <section>
-        <SectionHeader label="Key Tokens" />
-        <div className="grid grid-cols-6 gap-(--gap-S)">
-          {keyTokens.map(({ name, value, label }) => (
-            <div key={name} className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-M) overflow-hidden">
-              <div className="h-10" style={{ backgroundColor: value }} />
-              <div className="p-(--padding-S)">
-                <p className="text-xs font-semibold text-(--fg-primary) truncate">{label}</p>
-                <p className="text-xs text-(--fg-tertiary) font-mono mt-0.5 truncate">{name}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Foundations */}
-      <section>
-        <SectionHeader label="Foundations" />
+      <section className="flex flex-col gap-(--gap-L)">
+        <h2 style={{ fontFamily: 'var(--font-primary)', fontSize: 18, fontWeight: 800, color: 'var(--fg-primary)' }}>
+          Foundations
+        </h2>
         <div className="grid grid-cols-3 gap-(--gap-M)">
-          {foundations.map(({ to, label, desc, icon }) => (
+          {foundations.map(({ to, label, icon, desc }) => (
             <Link key={to} to={to} className="no-underline group">
-              <div className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-L) p-(--padding-XXL) flex flex-col gap-(--gap-M) hover:border-(--border-action) transition-colors h-full">
-                <div className="w-10 h-10 rounded-(--radius-M) bg-(--bg-brand_tertiary) flex items-center justify-center text-(--fg-brand_primary)">
-                  <Icon name={icon} size={20} stroke={2} />
+              <div className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-M) p-(--padding-XL) flex items-center gap-(--gap-M) hover:border-(--border-action) transition-colors">
+                <div className="w-9 h-9 rounded-(--radius-S) bg-(--bg-brand_tertiary) flex items-center justify-center shrink-0">
+                  <Icon name={icon} size={18} stroke={2} color="var(--fg-brand_primary)" />
                 </div>
-                <div>
-                  <p className="font-semibold text-(--fg-primary) text-sm">{label}</p>
-                  <p className="text-xs text-(--fg-tertiary) mt-(--gap-XS) leading-relaxed">{desc}</p>
+                <div className="min-w-0">
+                  <p style={{ fontFamily: 'var(--font-primary)', fontWeight: 700, fontSize: 15 }} className="text-(--fg-primary)">{label}</p>
+                  <p className="text-xs text-(--fg-tertiary) mt-0.5">{desc}</p>
                 </div>
+                <Icon name="IconChevronRight" size={16} stroke={2} color="var(--fg-quaterny)" className="ml-auto shrink-0 group-hover:text-(--fg-brand_primary) transition-colors" />
               </div>
             </Link>
           ))}
@@ -104,46 +154,41 @@ export function DesignOverview() {
       </section>
 
       {/* Components */}
-      <section>
-        <SectionHeader label="Components" />
-        <div className="grid grid-cols-2 gap-(--gap-M)">
-          {components.map(({ to, label, desc, badge }) => (
-            <Link key={to} to={to} className="no-underline group">
-              <div className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-L) p-(--padding-XXL) flex flex-col gap-(--gap-S) hover:border-(--border-action) transition-colors h-full">
-                <div className="flex items-center justify-between">
-                  <p style={{ fontFamily: 'var(--font-primary)', fontWeight: 800, fontSize: 18 }} className="text-(--fg-primary)">
-                    {label}
-                  </p>
-                  <Badge variant={badge}>Stable</Badge>
-                </div>
-                <p className="text-xs text-(--fg-tertiary) leading-relaxed">{desc}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <section className="flex flex-col gap-(--gap-XL)">
+        <h2 style={{ fontFamily: 'var(--font-primary)', fontSize: 18, fontWeight: 800, color: 'var(--fg-primary)' }}>
+          Components
+        </h2>
 
-      {/* Change visual identity */}
-      <section>
-        <div className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-L) p-(--padding-XXL) flex items-start gap-(--gap-XL)">
-          <div className="w-10 h-10 rounded-(--radius-M) bg-(--bg-brand_tertiary) flex items-center justify-center text-(--fg-brand_primary) shrink-0">
-            <Icon name="IconRefresh" size={20} stroke={2} />
-          </div>
-          <div className="flex-1">
-            <p style={{ fontFamily: 'var(--font-primary)', fontWeight: 800, fontSize: 16 }} className="text-(--fg-primary) mb-(--gap-XS)">
-              Change visual identity
-            </p>
-            <p className="text-sm text-(--fg-secondary) leading-relaxed mb-(--gap-L)">
-              To retheme the entire system, edit only{' '}
-              <code className="px-(--padding-XS) py-0.5 rounded-(--radius-XS) bg-(--bg-quaterny) text-xs font-mono">src/index.css</code>{' '}
-              → the{' '}
-              <code className="px-(--padding-XS) py-0.5 rounded-(--radius-XS) bg-(--bg-quaterny) text-xs font-mono">@theme</code>{' '}
-              block. Changing{' '}
-              <code className="px-(--padding-XS) py-0.5 rounded-(--radius-XS) bg-(--bg-quaterny) text-xs font-mono">--primary</code>{' '}
-              cascades across all components.
-            </p>
-            <Button variant="Secondary" small showIcon={false}>View DESIGN-SYSTEM.md</Button>
-          </div>
+        <div className="flex flex-col gap-(--gap-XL)">
+          {componentGroups.map(group => (
+            <div key={group.label} className="flex flex-col gap-(--gap-M)">
+
+              {/* Group header */}
+              <div className="flex items-center gap-(--gap-S)">
+                <div className="w-6 h-6 rounded-(--radius-XS) bg-(--bg-secondary) flex items-center justify-center">
+                  <Icon name={group.icon} size={14} stroke={2} color="var(--fg-tertiary)" />
+                </div>
+                <p className="text-xs font-semibold text-(--fg-tertiary) uppercase tracking-widest">{group.label}</p>
+                <div className="flex-1 h-px bg-(--border-default)" />
+                <p className="text-xs text-(--fg-quaterny)">{group.items.length}</p>
+              </div>
+
+              {/* Items grid */}
+              <div className="grid grid-cols-4 gap-(--gap-S)">
+                {group.items.map(({ to, label }) => (
+                  <Link key={to} to={to} className="no-underline group">
+                    <div className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-M) px-(--padding-L) py-(--padding-M) flex items-center justify-between hover:border-(--border-action) hover:bg-(--bg-brand_tertiary) transition-colors">
+                      <p className="text-sm text-(--fg-primary) group-hover:text-(--fg-brand_primary) transition-colors" style={{ fontFamily: 'var(--font-secondary)', fontWeight: 500 }}>
+                        {label}
+                      </p>
+                      <Icon name="IconArrowRight" size={14} stroke={2} color="var(--fg-quaterny)" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+            </div>
+          ))}
         </div>
       </section>
 
