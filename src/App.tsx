@@ -364,7 +364,7 @@ function App() {
         {/* Design system playground */}
         <Route path="/*" element={<DesignLayout />} />
       </Routes>
-      <Agentation />
+      {import.meta.env.DEV && <Agentation />}
     </BrowserRouter>
   )
 }
