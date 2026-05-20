@@ -38,8 +38,9 @@ const componentGroups = [
     label: 'Controls',
     icon: 'IconToggleLeft',
     items: [
-      { to: '/design/checkbox', label: 'Checkbox' },
-      { to: '/design/switch',   label: 'Switch' },
+      { to: '/design/checkbox',     label: 'Checkbox' },
+      { to: '/design/switch',       label: 'Switch' },
+      { to: '/design/radio-button', label: 'Radio Button' },
     ],
   },
   {
@@ -53,6 +54,7 @@ const componentGroups = [
       { to: '/design/chip',          label: 'Chip' },
       { to: '/design/progress-bar',  label: 'Progress Bar' },
       { to: '/design/list-item',     label: 'List Item' },
+      { to: '/design/head-icon',     label: 'Head Icon' },
     ],
   },
   {
@@ -87,6 +89,14 @@ const componentGroups = [
       { to: '/design/tab-bar',       label: 'Tab Bar' },
       { to: '/design/sidebar-nav',   label: 'Sidebar Navigation' },
       { to: '/design/banner',        label: 'Banner' },
+    ],
+  },
+  {
+    label: 'Page Control',
+    icon: 'IconLayoutGrid',
+    items: [
+      { to: '/design/navigation-dot', label: 'Navigation Dot' },
+      { to: '/design/pagination',     label: 'Pagination' },
     ],
   },
 ]

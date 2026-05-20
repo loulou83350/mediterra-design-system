@@ -43,6 +43,10 @@ import { HeaderMobilePage } from './pages/HeaderMobilePage'
 import { BottomBarPage } from './pages/BottomBarPage'
 import { TabBarPage } from './pages/TabBarPage'
 import { SidebarNavPage } from './pages/SidebarNavPage'
+import { RadioButtonPage } from './pages/RadioButtonPage'
+import { HeadIconPage } from './pages/HeadIconPage'
+import { NavigationDotPage } from './pages/NavigationDotPage'
+import { PaginationPage } from './pages/PaginationPage'
 import { ColorsPage } from './pages/foundations/ColorsPage'
 import { TypographyPage } from './pages/foundations/TypographyPage'
 import { IconsPage } from './pages/foundations/IconsPage'
@@ -96,8 +100,9 @@ const sidebarSections: SidebarSection[] = [
       {
         label: 'Controls',
         items: [
-          { to: '/design/checkbox', label: 'Checkbox' },
-          { to: '/design/switch',   label: 'Switch' },
+          { to: '/design/checkbox',      label: 'Checkbox' },
+          { to: '/design/switch',        label: 'Switch' },
+          { to: '/design/radio-button',  label: 'Radio Button' },
         ],
       },
       {
@@ -110,6 +115,7 @@ const sidebarSections: SidebarSection[] = [
           { to: '/design/chip',         label: 'Chip' },
           { to: '/design/progress-bar', label: 'Progress Bar' },
           { to: '/design/list-item',    label: 'List Item' },
+          { to: '/design/head-icon',    label: 'Head Icon' },
         ],
       },
       {
@@ -141,6 +147,13 @@ const sidebarSections: SidebarSection[] = [
           { to: '/design/bottom-bar',    label: 'Bottom Bar' },
           { to: '/design/tab-bar',       label: 'Tab Bar' },
           { to: '/design/sidebar-nav',   label: 'Sidebar Navigation' },
+        ],
+      },
+      {
+        label: 'Page Control',
+        items: [
+          { to: '/design/navigation-dot', label: 'Navigation Dot' },
+          { to: '/design/pagination',     label: 'Pagination' },
         ],
       },
     ],
@@ -284,6 +297,10 @@ function DesignLayout() {
           <Route path="/design/bottom-bar"           element={<BottomBarPage />} />
           <Route path="/design/tab-bar"              element={<TabBarPage />} />
           <Route path="/design/sidebar-nav"          element={<SidebarNavPage />} />
+          <Route path="/design/radio-button"         element={<RadioButtonPage />} />
+          <Route path="/design/head-icon"            element={<HeadIconPage />} />
+          <Route path="/design/navigation-dot"       element={<NavigationDotPage />} />
+          <Route path="/design/pagination"           element={<PaginationPage />} />
         </Routes>
       </main>
     </div>
