@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import { Icon } from '../components/ui/Icon'
 
 // ─── Data — mirrors sidebar structure ────────────────────────────────────────
@@ -132,48 +131,6 @@ const figmaResources = [
 
 const GITHUB_URL = 'https://github.com/loulou83350/mediterra-design-system'
 
-const steps = [
-  {
-    n: '01',
-    title: 'Clone the repo',
-    code: 'git clone https://github.com/loulou83350/mediterra-design-system.git',
-  },
-  {
-    n: '02',
-    title: 'Install dependencies',
-    code: 'npm install',
-  },
-  {
-    n: '03',
-    title: 'Run locally',
-    code: 'npm run dev',
-  },
-]
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false)
-  function copy() {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1800)
-  }
-  return (
-    <button
-      type="button"
-      onClick={copy}
-      className="shrink-0 p-(--padding-XS) rounded-(--radius-XS) hover:bg-white/10 transition-colors cursor-pointer"
-      title="Copy"
-    >
-      <Icon
-        name={copied ? 'IconCheck' : 'IconCopy'}
-        size={14}
-        stroke={2}
-        color={copied ? 'var(--fg-succes_primary)' : 'var(--fg-quaterny)'}
-      />
-    </button>
-  )
-}
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function DesignOverview() {
@@ -238,75 +195,44 @@ export function DesignOverview() {
 
       {/* Get started */}
       <section className="flex flex-col gap-(--gap-L)">
-        <div className="flex items-center justify-between">
-          <h2 style={{ fontFamily: 'var(--font-primary)', fontSize: 18, fontWeight: 800, color: 'var(--fg-primary)' }}>
-            Get started
-          </h2>
+        <h2 style={{ fontFamily: 'var(--font-primary)', fontSize: 18, fontWeight: 800, color: 'var(--fg-primary)' }}>
+          Get started
+        </h2>
+        <div className="grid grid-cols-2 gap-(--gap-M)">
+          {/* GitHub */}
           <a
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-(--gap-S) px-(--padding-L) py-(--padding-S) rounded-(--radius-S) border border-(--border-default) hover:border-(--border-action) transition-colors no-underline"
+            className="no-underline group"
           >
-            {/* GitHub mark */}
-            <svg width="16" height="16" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" clipRule="evenodd" fill="var(--fg-primary)" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"/>
-            </svg>
-            <span style={{ fontFamily: 'var(--font-secondary)', fontWeight: 600, fontSize: 13, color: 'var(--fg-primary)' }}>
-              View on GitHub
-            </span>
-            <Icon name="IconExternalLink" size={13} stroke={2} color="var(--fg-quaterny)" />
-          </a>
-        </div>
-
-        {/* Steps */}
-        <div className="flex flex-col gap-(--gap-S)">
-          {steps.map(({ n, title, code }) => (
-            <div key={n} className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-M) overflow-hidden">
-              {/* Step header */}
-              <div className="flex items-center gap-(--gap-M) px-(--padding-L) py-(--padding-M)" style={{ borderBottom: '1px solid var(--border-default)' }}>
-                <span
-                  className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
-                  style={{ background: 'var(--bg-brand_tertiary)', fontFamily: 'var(--font-primary)', fontWeight: 800, fontSize: 11, color: 'var(--fg-brand_primary)' }}
-                >
-                  {n}
-                </span>
-                <span style={{ fontFamily: 'var(--font-secondary)', fontWeight: 600, fontSize: 14, color: 'var(--fg-primary)' }}>
-                  {title}
-                </span>
+            <div className="bg-(--bg-primary) border border-(--border-default) rounded-(--radius-M) p-(--padding-XL) flex items-center gap-(--gap-M) hover:border-(--border-action) transition-colors h-full">
+              <div className="w-9 h-9 rounded-(--radius-S) bg-(--bg-secondary) flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" fill="var(--fg-primary)" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"/>
+                </svg>
               </div>
-              {/* Code line */}
-              <div
-                className="flex items-center justify-between px-(--padding-L) py-(--padding-M) gap-(--gap-M)"
-                style={{ background: 'var(--bg-tooltips)' }}
-              >
-                <code style={{ fontFamily: 'monospace', fontSize: 13, color: 'var(--fg-brand_secondary)', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {code}
-                </code>
-                <CopyButton text={code} />
+              <div className="flex-1 min-w-0">
+                <p style={{ fontFamily: 'var(--font-primary)', fontWeight: 700, fontSize: 15 }} className="text-(--fg-primary)">Browse the source code</p>
+                <p className="text-xs text-(--fg-tertiary) mt-0.5">github.com/loulou83350/mediterra-design-system</p>
               </div>
+              <Icon name="IconExternalLink" size={16} stroke={2} color="var(--fg-quaterny)" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-          ))}
-        </div>
+          </a>
 
-        {/* Customize hint */}
-        <div
-          className="flex items-start gap-(--gap-M) p-(--padding-L) rounded-(--radius-M)"
-          style={{ background: 'var(--bg-brand_tertiary)', border: '1px solid var(--border-brand)' }}
-        >
-          <Icon name="IconPalette" size={18} stroke={2} color="var(--fg-brand_primary)" className="shrink-0 mt-0.5" />
-          <div>
-            <p style={{ fontFamily: 'var(--font-secondary)', fontWeight: 700, fontSize: 13, color: 'var(--fg-brand_primary)' }}>
-              Customize the visual identity
-            </p>
-            <p style={{ fontFamily: 'var(--font-secondary)', fontWeight: 400, fontSize: 13, color: 'var(--fg-secondary)', marginTop: 2 }}>
-              All design tokens (colors, typography, spacing, radii) live in{' '}
-              <code style={{ fontFamily: 'monospace', background: 'var(--bg-brand_tertiary)', padding: '1px 4px', borderRadius: 3 }}>
-                src/index.css
-              </code>
-              {' '}inside the <code style={{ fontFamily: 'monospace', background: 'var(--bg-brand_tertiary)', padding: '1px 4px', borderRadius: 3 }}>@theme {'{}'}</code> block.
-              Changing those values updates every component instantly.
-            </p>
+          {/* Customize */}
+          <div
+            className="bg-(--bg-brand_tertiary) border border-(--border-brand) rounded-(--radius-M) p-(--padding-XL) flex items-center gap-(--gap-M)"
+          >
+            <div className="w-9 h-9 rounded-(--radius-S) bg-(--bg-brand_secondary) flex items-center justify-center shrink-0">
+              <Icon name="IconPalette" size={18} stroke={2} color="var(--fg-brand_primary)" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p style={{ fontFamily: 'var(--font-primary)', fontWeight: 700, fontSize: 15 }} className="text-(--fg-brand_primary)">Customize tokens</p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--fg-secondary)' }}>
+                Edit <code style={{ fontFamily: 'monospace', background: 'var(--bg-brand_secondary)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>src/index.css</code> → <code style={{ fontFamily: 'monospace', background: 'var(--bg-brand_secondary)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>@theme{'{}'}</code>
+              </p>
+            </div>
           </div>
         </div>
       </section>

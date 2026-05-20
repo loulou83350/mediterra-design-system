@@ -198,6 +198,172 @@ const sidebarSections: SidebarSection[] = [
 
 const ChevronDown = TablerIcons['IconChevronDown'] as React.ComponentType<any>
 
+// ─── Theme switcher ───────────────────────────────────────────────────────────
+
+type ColorPreset = {
+  name: string
+  swatch: string
+  primary: string
+  hover: string
+  secondary: string
+  tertiary: string
+  border: string
+}
+
+const COLOR_PRESETS: ColorPreset[] = [
+  { name: 'Blue',    swatch: '#0baeec', primary: '#0baeec', hover: '#0170a3', secondary: '#b9e8fe', tertiary: '#f0faff', border: '#35c5fb' },
+  { name: 'Violet',  swatch: '#7c3aed', primary: '#7c3aed', hover: '#5b21b6', secondary: '#ddd6fe', tertiary: '#f5f3ff', border: '#a78bfa' },
+  { name: 'Emerald', swatch: '#059669', primary: '#059669', hover: '#047857', secondary: '#a7f3d0', tertiary: '#ecfdf5', border: '#6ee7b7' },
+  { name: 'Amber',   swatch: '#d97706', primary: '#d97706', hover: '#b45309', secondary: '#fde68a', tertiary: '#fffbeb', border: '#fcd34d' },
+  { name: 'Rose',    swatch: '#e11d48', primary: '#e11d48', hover: '#be123c', secondary: '#fecdd3', tertiary: '#fff1f2', border: '#fda4af' },
+]
+
+type RadiusPreset = { name: string; XS: string; S: string; M: string; L: string; XL: string }
+
+const RADIUS_PRESETS: RadiusPreset[] = [
+  { name: 'Sharp',   XS: '2px',  S: '4px',  M: '6px',  L: '8px',  XL: '12px' },
+  { name: 'Default', XS: '4px',  S: '8px',  M: '12px', L: '16px', XL: '24px' },
+  { name: 'Soft',    XS: '6px',  S: '12px', M: '16px', L: '20px', XL: '28px' },
+  { name: 'Round',   XS: '10px', S: '16px', M: '22px', L: '28px', XL: '36px' },
+]
+
+function applyColor(p: ColorPreset) {
+  const r = document.documentElement
+  const map: Record<string, string> = {
+    '--bg-brand_primary': p.primary, '--fg-brand_primary': p.primary,
+    '--bg-action': p.primary, '--fg-action': p.primary,
+    '--text-action': p.primary, '--text-brand': p.primary,
+    '--text-link': p.primary, '--text-neutral': p.primary,
+    '--fg-neutral_primary': p.primary, '--bg-neutral_primary': p.primary,
+    '--bg-action_hover': p.hover, '--fg-action_hover': p.hover,
+    '--text-action_hover': p.hover, '--text-link_hover': p.hover,
+    '--bg-brand_secondary': p.secondary, '--fg-brand_secondary': p.secondary,
+    '--bg-action_white_hover': p.secondary, '--bg-neutral_secondary': p.secondary,
+    '--fg-neutral_secondary': p.secondary,
+    '--bg-brand_tertiary': p.tertiary, '--fg-brand_tertiary': p.tertiary,
+    '--bg-neutral_tertiary': p.tertiary, '--fg-neutral_tertiary': p.tertiary,
+    '--border-action': p.border, '--border-brand': p.border,
+    '--border-neutral_primary': p.border,
+  }
+  Object.entries(map).forEach(([k, v]) => r.style.setProperty(k, v))
+}
+
+function applyRadius(p: RadiusPreset) {
+  const r = document.documentElement
+  r.style.setProperty('--radius-XS', p.XS)
+  r.style.setProperty('--radius-S', p.S)
+  r.style.setProperty('--radius-M', p.M)
+  r.style.setProperty('--radius-L', p.L)
+  r.style.setProperty('--radius-XL', p.XL)
+}
+
+function ThemeSwitcher() {
+  const [open, setOpen] = useState(false)
+  const [activeColor, setActiveColor] = useState('Blue')
+  const [activeRadius, setActiveRadius] = useState('Default')
+
+  function selectColor(p: ColorPreset) {
+    setActiveColor(p.name)
+    applyColor(p)
+  }
+
+  function selectRadius(p: RadiusPreset) {
+    setActiveRadius(p.name)
+    applyRadius(p)
+  }
+
+  return (
+    <div style={{ borderBottom: '1px solid var(--border-default)' }}>
+      {/* Trigger row */}
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center justify-between px-(--padding-L) py-(--padding-M) hover:bg-(--bg-secondary) transition-colors cursor-pointer"
+      >
+        <div className="flex items-center gap-(--gap-S)">
+          {/* Live color dot */}
+          <span
+            className="w-3 h-3 rounded-full shrink-0 transition-colors"
+            style={{ background: COLOR_PRESETS.find(p => p.name === activeColor)?.primary ?? 'var(--bg-action)' }}
+          />
+          <span style={{ fontFamily: 'var(--font-secondary)', fontWeight: 600, fontSize: 12, color: 'var(--fg-tertiary)' }}>
+            Theme
+          </span>
+        </div>
+        <ChevronDown
+          size={12}
+          stroke={2}
+          color="var(--fg-quaterny)"
+          style={{ transform: open ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 150ms ease' }}
+        />
+      </button>
+
+      {/* Panel */}
+      {open && (
+        <div className="flex flex-col gap-(--gap-M) px-(--padding-L) pb-(--padding-M)">
+          {/* Colors */}
+          <div className="flex flex-col gap-(--gap-XS)">
+            <span style={{ fontFamily: 'var(--font-secondary)', fontWeight: 600, fontSize: 10, color: 'var(--fg-quaterny)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              Color
+            </span>
+            <div className="flex items-center gap-(--gap-S)">
+              {COLOR_PRESETS.map(p => (
+                <button
+                  key={p.name}
+                  type="button"
+                  title={p.name}
+                  onClick={() => selectColor(p)}
+                  className="cursor-pointer transition-transform hover:scale-110"
+                  style={{
+                    width: 20, height: 20,
+                    borderRadius: '50%',
+                    background: p.swatch,
+                    border: activeColor === p.name ? '2px solid var(--fg-primary)' : '2px solid transparent',
+                    outline: activeColor === p.name ? '1px solid var(--bg-primary)' : 'none',
+                    outlineOffset: -3,
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Radius */}
+          <div className="flex flex-col gap-(--gap-XS)">
+            <span style={{ fontFamily: 'var(--font-secondary)', fontWeight: 600, fontSize: 10, color: 'var(--fg-quaterny)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              Radius
+            </span>
+            <div className="flex items-center gap-(--gap-XS)">
+              {RADIUS_PRESETS.map(p => (
+                <button
+                  key={p.name}
+                  type="button"
+                  onClick={() => selectRadius(p)}
+                  className="cursor-pointer transition-colors flex-1"
+                  style={{
+                    padding: '3px 0',
+                    borderRadius: p.M,
+                    fontSize: 10,
+                    fontFamily: 'var(--font-secondary)',
+                    fontWeight: 600,
+                    border: activeRadius === p.name
+                      ? '1.5px solid var(--border-action)'
+                      : '1.5px solid var(--border-default)',
+                    background: activeRadius === p.name ? 'var(--bg-brand_tertiary)' : 'transparent',
+                    color: activeRadius === p.name ? 'var(--fg-brand_primary)' : 'var(--fg-tertiary)',
+                  }}
+                >
+                  {p.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center px-(--padding-M) py-(--padding-S) rounded-(--radius-S) text-sm font-medium transition-colors ${
     isActive
@@ -239,6 +405,8 @@ function Sidebar() {
           Mediterra
         </p>
       </div>
+
+      <ThemeSwitcher />
 
       <nav className="flex flex-col p-(--padding-S) gap-(--gap-XS) flex-1">
         {sidebarSections.map(({ label, items, groups }) => (
