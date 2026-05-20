@@ -32,6 +32,8 @@ import { NotificationItemPage } from './pages/NotificationItemPage'
 import { BannerPage } from './pages/BannerPage'
 import { GlobalAlertPage } from './pages/GlobalAlertPage'
 import { SwitchPage } from './pages/SwitchPage'
+import { TooltipPage } from './pages/TooltipPage'
+import { PopoverPage } from './pages/PopoverPage'
 import { FileUploadPage } from './pages/FileUploadPage'
 import { ProgressBarPage } from './pages/ProgressBarPage'
 import { HorizontalStepperPage } from './pages/HorizontalStepperPage'
@@ -119,6 +121,8 @@ const sidebarSections: SidebarSection[] = [
           { to: '/design/modal',             label: 'Modal & Drawer' },
           { to: '/design/notification-item', label: 'Notification Item' },
           { to: '/design/global-alert',      label: 'Global Alert' },
+          { to: '/design/tooltip',           label: 'Tooltip' },
+          { to: '/design/popover',           label: 'Popover' },
         ],
       },
       {
@@ -269,6 +273,8 @@ function DesignLayout() {
           <Route path="/design/notification-item"   element={<NotificationItemPage />} />
           <Route path="/design/banner"              element={<BannerPage />} />
           <Route path="/design/global-alert"        element={<GlobalAlertPage />} />
+          <Route path="/design/tooltip"             element={<TooltipPage />} />
+          <Route path="/design/popover"             element={<PopoverPage />} />
           <Route path="/design/switch"              element={<SwitchPage />} />
           <Route path="/design/progress-bar"        element={<ProgressBarPage />} />
           <Route path="/design/stepper-horizontal"  element={<HorizontalStepperPage />} />

@@ -65,6 +65,8 @@ const componentGroups = [
       { to: '/design/modal',             label: 'Modal & Drawer' },
       { to: '/design/notification-item', label: 'Notification Item' },
       { to: '/design/global-alert',      label: 'Global Alert' },
+      { to: '/design/tooltip',           label: 'Tooltip' },
+      { to: '/design/popover',           label: 'Popover' },
     ],
   },
   {

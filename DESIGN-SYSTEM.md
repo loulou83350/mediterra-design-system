@@ -1,11 +1,11 @@
-# Design System — UXProbe
+# Mediterra Design System
 
 > Référence technique pour Claude et les développeurs. Dense par design : chaque section répond à une question précise sans navigation supplémentaire.
+> Live : https://mediterra-ds.vercel.app
 
-## Fichier Figma
+## Figma
 
 - **File key** : `K7WS880rk8Q3bibhVRJ5fe`
-- **Page Foundation** : `1811:15653`
 - **URL** : https://www.figma.com/design/K7WS880rk8Q3bibhVRJ5fe/UXProbe
 
 ---
@@ -14,14 +14,121 @@
 
 | Couche | Outil | Version |
 |---|---|---|
-| Framework | Next.js (App Router) | 15 |
+| Framework | Vite + React | 19 |
+| Langage | TypeScript | strict |
 | CSS | Tailwind CSS | v4 |
-| Composants | shadcn/ui | latest |
-| Icônes | Tabler Icons | latest |
+| Composants | Custom (src/components/ui/) | — |
+| Icônes | Tabler Icons (@tabler/icons-react) | latest |
 | Police display | Wanted Sans Variable | — |
 | Police corps | Open Sans | — |
+| Router | React Router DOM | v7 |
 
-**Fichier unique à modifier pour changer de DA** : `app/globals.css` → bloc `@theme {}`
+**Fichier unique à modifier pour changer de DA** : `src/index.css` → bloc `@theme {}`
+
+---
+
+## Composants (src/components/ui/)
+
+### Actions
+- `Button.tsx` — variants: Primary / Secondary / Tertiary / Quaterny, small prop, icon prop, invert prop
+- `DestructiveButton.tsx` — mêmes variants, tokens error au lieu de action
+
+### Inputs
+- `TextField.tsx` — label, helperText, error, disabled, small, leadIcon
+- `PasswordInput.tsx` — toggle visibilité, mêmes états que TextField
+- `OTPInput.tsx` — length prop (4 ou 6), focus auto-avance
+- `Select.tsx` — portal dropdown, leadIcon, options array
+- `NumericInput.tsx` — min/max/step, boutons +/−
+- `TextArea.tsx` — counter, rows, resize disabled
+- `MultiSelect.tsx` — chips sous le trigger, max visible, portal panel
+- `PhoneNumberInput.tsx` — country selector + number input
+- `CreditCardInput.tsx` — card number / expiry / CVV
+- `FileUpload.tsx` — drag & drop, progress via ProgressBar
+
+### Controls
+- `Checkbox.tsx` — states: off / on / partial, group hover
+- `Switch.tsx` — single choice (green on) + two-choice (blue on), hover → blue, disabled
+
+### Display
+- `Avatar.tsx` — exports: Avatar, AvatarLabel, AvatarGroup ; types: Image/Letter/Empty ; sizes: S/M/L/XL ; colors: brand/success/warning/error/neutral
+- `Badge.tsx` — variants: brand/success/warning/error/neutral
+- `Card.tsx` — exports: Card, CardImage, EmptyState, CardCTA
+- `Tag.tsx` — colors: Neutral/Success/Error/Warning ; highContrast/lowContrast ; headIcon/tailIcon
+- `Chip.tsx` — couleurs Neutral/Success/Error/Warning ; active state ; avatar ; tailIcon (X)
+- `ProgressBar.tsx` — value 0-100 ; variants: default/warning ; showScore
+- `ListItem.tsx` — variants: default/multiple-action/action/tag/placeholder
+
+### Feedback
+- `Alert.tsx`
+- `Notification.tsx` — sizes: S/M/L ; count
+- `Tips.tsx`
+- `Modal.tsx` — exports: Modal, Drawer ; types: default/img-vertical/img-horizontal
+- `NotificationItem.tsx` — types: Neutral/Error/Success/Warning ; recent state
+- `GlobalAlert.tsx` — desktop + mobile mode
+- `Banner.tsx` — expand/collapse animé (max-height + crossfade)
+- `Tooltip.tsx` — colors: Subtle/Contrast/Accent ; types: default/icon/link ; 4 sides ; viewport-aware
+- `Popover.tsx` — sides: Center/Left/Right ; top prop ; viewport-aware ; auto-flip
+
+### Navigation / Steppers
+- `HorizontalStepper.tsx` — states: current/next/done/problem
+- `VerticalStepper.tsx` — states: current/default/done/wrong ; children content slot
+- `CircularStepper.tsx` — SVG arc ; states: progress/success/error
+
+### Layout
+- `HeaderMobile.tsx` — types: childpage/main ; tabs ; statusBar
+- `BottomBar.tsx` — exports: BottomNavItem, BottomBar ; badge ; selected state
+- `TabBar.tsx` — exports: TabItem, TabBar ; types: default/badge/status ; mobile mode
+- `SidebarNavigation.tsx` — exports: SidebarMenuItem, SidebarNavigation ; compact/expanded
+
+---
+
+## Conventions code
+
+### Token syntax (Tailwind v4)
+```
+bg-(--bg-action)          border-(--border-default)
+text-(--text-primary)     rounded-(--radius-S)
+gap-(--gap-M)             p-(--padding-L)
+```
+
+### Icônes
+```tsx
+import { Icon } from './Icon'
+<Icon name="IconArrowRight" size={24} stroke={2} color="var(--fg-secondary)" />
+```
+Pour swapper la lib d'icônes : modifier uniquement `src/components/ui/Icon.tsx`.
+
+### Pattern de page playground
+```tsx
+import { ComponentPage, Control, ControlSelect, ControlToggle, IconPicker } from '../pages/ComponentLayout'
+
+export function MyComponentPage() {
+  const [variant, setVariant] = useState('Primary')
+  return (
+    <ComponentPage
+      title="My Component"
+      description="..."
+      controls={<>
+        <Control label="Variant">
+          <ControlSelect value={variant} options={['Primary','Secondary']} onChange={setVariant} />
+        </Control>
+      </>}
+      preview={<MyComponent variant={variant} />}
+      states={[
+        { label: 'All variants', node: <div>...</div> },
+      ]}
+    />
+  )
+}
+```
+
+### Pattern portal (Select, Popover, Tooltip, IconPicker)
+```tsx
+import { createPortal } from 'react-dom'
+// Calcul position depuis triggerRef.getBoundingClientRect()
+// Clamp dans la viewport : Math.max(8, Math.min(x, window.innerWidth - panelW - 8))
+// createPortal(<div style={{ position: 'fixed', ... }}>, document.body)
+```
 
 ---
 

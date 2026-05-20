@@ -75,10 +75,10 @@ export function Switch({
         onClick={() => onChange?.(!checked)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`relative w-10 h-[22px] rounded-full transition-colors cursor-pointer shrink-0 ${trackColor}`}
+        className={`relative w-10 h-[22px] rounded-full transition-colors cursor-pointer shrink-0 p-0 border-0 outline-none ${trackColor}`}
       >
         <span
-          className={`absolute top-[3px] w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${thumbCls}`}
+          className={`absolute top-[3px] left-0 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${thumbCls}`}
         />
       </button>
 
