@@ -55,6 +55,13 @@ import { BarChartPage } from './pages/BarChartPage'
 import { ColorsPage } from './pages/foundations/ColorsPage'
 import { TypographyPage } from './pages/foundations/TypographyPage'
 import { IconsPage } from './pages/foundations/IconsPage'
+import { ScreenOnboarding } from './screens/ScreenOnboarding'
+import { ScreenSupportList } from './screens/ScreenSupportList'
+import { ScreenSupportCreate } from './screens/ScreenSupportCreate'
+import { ScreenHome } from './screens/ScreenHome'
+import { ScreenMobileDashboard } from './screens/ScreenMobileDashboard'
+import { ScreenMobilePotType } from './screens/ScreenMobilePotType'
+import { ScreenQuestionForm } from './screens/ScreenQuestionForm'
 
 type SidebarItem  = { to: string; label: string; end?: boolean }
 type SidebarGroup = { label: string; items: SidebarItem[] }
@@ -64,11 +71,25 @@ type SidebarSection = {
   groups?: SidebarGroup[]
 }
 
+const APP_PREVIEW_SECTION: SidebarSection = {
+  label: 'App Preview',
+  items: [
+    { to: '/app',                 label: 'Home' },
+    { to: '/app/onboarding',      label: 'Onboarding' },
+    { to: '/app/support',         label: 'Support List' },
+    { to: '/app/support/new',     label: 'Create Template' },
+    { to: '/app/mobile',          label: 'Mobile Dashboard' },
+    { to: '/app/mobile/pot-type', label: 'Mobile Pot Type' },
+    { to: '/app/question-form',   label: 'Question Form' },
+  ],
+}
+
 const sidebarSections: SidebarSection[] = [
   {
     label: null,
     items: [{ to: '/design', label: 'Overview', end: true }],
   },
+  ...(import.meta.env.DEV ? [APP_PREVIEW_SECTION] : []),
   {
     label: 'Foundations',
     items: [
@@ -332,6 +353,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/design" replace />} />
+        {/* App prototype screens — local dev only */}
+        {import.meta.env.DEV && <Route path="/app"                 element={<ScreenHome />} />}
+        {import.meta.env.DEV && <Route path="/app/onboarding"      element={<ScreenOnboarding />} />}
+        {import.meta.env.DEV && <Route path="/app/support"         element={<ScreenSupportList />} />}
+        {import.meta.env.DEV && <Route path="/app/support/new"     element={<ScreenSupportCreate />} />}
+        {import.meta.env.DEV && <Route path="/app/mobile"          element={<ScreenMobileDashboard />} />}
+        {import.meta.env.DEV && <Route path="/app/mobile/pot-type" element={<ScreenMobilePotType />} />}
+        {import.meta.env.DEV && <Route path="/app/question-form"   element={<ScreenQuestionForm />} />}
+        {/* Design system playground */}
         <Route path="/*" element={<DesignLayout />} />
       </Routes>
       <Agentation />

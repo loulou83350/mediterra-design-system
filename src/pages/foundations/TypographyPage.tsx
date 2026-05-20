@@ -10,7 +10,7 @@ type TextStyle = {
 }
 
 const fonts = [
-  { token: 'Font/font-primary', value: 'Wanted Sans Variable', role: 'Display / Headings' },
+  { token: 'Font/font-primary', value: 'Wanted Sans', role: 'Display / Headings' },
   { token: 'Font/font-secondary', value: 'Open Sans', role: 'Body text' },
 ]
 

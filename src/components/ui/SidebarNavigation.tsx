@@ -10,6 +10,7 @@ export interface SidebarMenuItemProps {
   state?: SidebarMenuItemState
   compact?: boolean
   badge?: number
+  disabled?: boolean
   onClick?: () => void
 }
 
@@ -18,6 +19,7 @@ export interface SidebarNavItem {
   label: string
   selected?: boolean
   badge?: number
+  disabled?: boolean
   onClick?: () => void
 }
 
@@ -57,13 +59,14 @@ export function SidebarMenuItem({
   state = 'default',
   compact = true,
   badge,
+  disabled = false,
   onClick,
 }: SidebarMenuItemProps) {
   const lStyle = labelColors[state]
   return (
     <div
-      onClick={onClick}
-      className={`flex ${compact ? 'flex-col items-center gap-(--gap-XS)' : 'items-center gap-(--gap-S)'} p-(--padding-S) rounded-(--radius-S) relative cursor-pointer w-full transition-colors ${stateClasses[state]}`}
+      onClick={disabled ? undefined : onClick}
+      className={`flex ${compact ? 'flex-col items-center gap-(--gap-XS)' : 'items-center gap-(--gap-S)'} p-(--padding-S) rounded-(--radius-S) relative w-full transition-colors ${disabled ? 'opacity-50 cursor-default' : 'cursor-pointer ' + stateClasses[state]}`}
     >
       <Icon name={icon as any} size={24} stroke={2} color={iconColors[state]} />
       {!compact && (
@@ -179,6 +182,7 @@ export function SidebarNavigation({
               state={item.selected ? 'selected' : 'default'}
               compact={!expand}
               badge={item.badge}
+              disabled={item.disabled}
               onClick={item.onClick}
             />
           ))}

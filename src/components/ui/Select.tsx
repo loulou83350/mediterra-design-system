@@ -46,14 +46,39 @@ export function Select({
   const [open, setOpen] = useState(false)
   const triggerRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
-  const [panelRect, setPanelRect] = useState<{ top: number; left: number; width: number } | null>(null)
+  const [panelRect, setPanelRect] = useState<{
+    top?: number
+    bottom?: number
+    left: number
+    width: number
+    maxHeight: number
+  } | null>(null)
 
   const selected = options.find(o => o.value === value)
 
   function calcRect() {
     if (!triggerRef.current) return null
     const r = triggerRef.current.getBoundingClientRect()
-    return { top: r.bottom + 4, left: r.left, width: r.width }
+    const GAP = 4
+    const PADDING = 8
+    const MAX_PANEL = 320
+    const spaceBelow = window.innerHeight - r.bottom - GAP
+    const spaceAbove = r.top - GAP
+    const openUpward = spaceBelow < 160 && spaceAbove > spaceBelow
+    if (openUpward) {
+      return {
+        bottom: window.innerHeight - r.top + GAP,
+        left: r.left,
+        width: r.width,
+        maxHeight: Math.min(spaceAbove - PADDING, MAX_PANEL),
+      }
+    }
+    return {
+      top: r.bottom + GAP,
+      left: r.left,
+      width: r.width,
+      maxHeight: Math.min(spaceBelow - PADDING, MAX_PANEL),
+    }
   }
 
   function openPanel() {
@@ -157,11 +182,14 @@ export function Select({
           style={{
             position: 'fixed',
             top: panelRect.top,
+            bottom: panelRect.bottom,
             left: panelRect.left,
             width: panelRect.width,
+            maxHeight: panelRect.maxHeight,
             zIndex: 9999,
+            overflowY: 'auto',
           }}
-          className="bg-(--bg-primary) border border-(--border-action) rounded-(--radius-S) shadow-lg overflow-hidden py-(--padding-XS)"
+          className="bg-(--bg-primary) border border-(--border-action) rounded-(--radius-S) shadow-lg py-(--padding-XS)"
         >
           {options.map(opt => {
             const isSelected = opt.value === value
