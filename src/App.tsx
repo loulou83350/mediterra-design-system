@@ -109,70 +109,80 @@ const sidebarSections: SidebarSection[] = [
         ],
       },
       {
-        label: 'Inputs',
+        label: 'Charts',
         items: [
-          { to: '/design/text-field', label: 'Text Field' },
-          { to: '/design/password',   label: 'Password' },
-          { to: '/design/otp',        label: 'OTP Code' },
-          { to: '/design/select',      label: 'Select' },
-          { to: '/design/numeric',     label: 'Numeric Input' },
-          { to: '/design/textarea',    label: 'Text Area' },
-          { to: '/design/multiselect',  label: 'Multi Select' },
-          { to: '/design/phone',        label: 'Phone Number' },
-          { to: '/design/credit-card',  label: 'Credit Card' },
-          { to: '/design/file-upload',  label: 'File Upload' },
+          { to: '/design/bar-chart',   label: 'Bar Chart' },
+          { to: '/design/line-chart',  label: 'Line Chart' },
+          { to: '/design/radar-chart', label: 'Radar Chart' },
+          { to: '/design/stat-card',   label: 'Stat Card' },
+          { to: '/design/step-chart',  label: 'Step Chart' },
         ],
       },
       {
         label: 'Controls',
         items: [
-          { to: '/design/checkbox',      label: 'Checkbox' },
-          { to: '/design/switch',        label: 'Switch' },
-          { to: '/design/radio-button',  label: 'Radio Button' },
+          { to: '/design/checkbox',     label: 'Checkbox' },
+          { to: '/design/radio-button', label: 'Radio Button' },
+          { to: '/design/switch',       label: 'Switch' },
         ],
       },
       {
         label: 'Display',
         items: [
-          { to: '/design/avatar', label: 'Avatar' },
-          { to: '/design/badge',  label: 'Badge' },
-          { to: '/design/card',   label: 'Card' },
-          { to: '/design/tag',    label: 'Tag' },
+          { to: '/design/avatar',       label: 'Avatar' },
+          { to: '/design/badge',        label: 'Badge' },
+          { to: '/design/card',         label: 'Card' },
           { to: '/design/chip',         label: 'Chip' },
-          { to: '/design/progress-bar', label: 'Progress Bar' },
-          { to: '/design/list-item',    label: 'List Item' },
           { to: '/design/head-icon',    label: 'Head Icon' },
+          { to: '/design/list-item',    label: 'List Item' },
+          { to: '/design/progress-bar', label: 'Progress Bar' },
+          { to: '/design/tag',          label: 'Tag' },
         ],
       },
       {
         label: 'Feedback',
         items: [
-          { to: '/design/alert',        label: 'Alert' },
-          { to: '/design/notification', label: 'Notification' },
-          { to: '/design/tips',         label: 'Tips' },
-          { to: '/design/modal',             label: 'Modal & Drawer' },
-          { to: '/design/notification-item', label: 'Notification Item' },
+          { to: '/design/alert',             label: 'Alert' },
           { to: '/design/global-alert',      label: 'Global Alert' },
-          { to: '/design/tooltip',           label: 'Tooltip' },
+          { to: '/design/modal',             label: 'Modal & Drawer' },
+          { to: '/design/notification',      label: 'Notification' },
+          { to: '/design/notification-item', label: 'Notification Item' },
           { to: '/design/popover',           label: 'Popover' },
+          { to: '/design/tips',              label: 'Tips' },
+          { to: '/design/tooltip',           label: 'Tooltip' },
         ],
       },
       {
-        label: 'Navigation',
+        label: 'Inputs',
         items: [
-          { to: '/design/stepper-horizontal', label: 'Horizontal Stepper' },
-          { to: '/design/stepper-vertical',   label: 'Vertical Stepper' },
-          { to: '/design/stepper-circular',   label: 'Circular Stepper' },
+          { to: '/design/credit-card',  label: 'Credit Card' },
+          { to: '/design/file-upload',  label: 'File Upload' },
+          { to: '/design/multiselect',  label: 'Multi Select' },
+          { to: '/design/numeric',      label: 'Numeric Input' },
+          { to: '/design/otp',          label: 'OTP Code' },
+          { to: '/design/password',     label: 'Password' },
+          { to: '/design/phone',        label: 'Phone Number' },
+          { to: '/design/select',       label: 'Select' },
+          { to: '/design/textarea',     label: 'Text Area' },
+          { to: '/design/text-field',   label: 'Text Field' },
         ],
       },
       {
         label: 'Layout',
         items: [
-          { to: '/design/header-mobile', label: 'Header Mobile' },
           { to: '/design/banner',        label: 'Banner' },
           { to: '/design/bottom-bar',    label: 'Bottom Bar' },
-          { to: '/design/tab-bar',       label: 'Tab Bar' },
+          { to: '/design/header-mobile', label: 'Header Mobile' },
           { to: '/design/sidebar-nav',   label: 'Sidebar Navigation' },
+          { to: '/design/tab-bar',       label: 'Tab Bar' },
+        ],
+      },
+      {
+        label: 'Navigation',
+        items: [
+          { to: '/design/stepper-circular',   label: 'Circular Stepper' },
+          { to: '/design/stepper-horizontal', label: 'Horizontal Stepper' },
+          { to: '/design/stepper-vertical',   label: 'Vertical Stepper' },
         ],
       },
       {
@@ -180,16 +190,6 @@ const sidebarSections: SidebarSection[] = [
         items: [
           { to: '/design/navigation-dot', label: 'Navigation Dot' },
           { to: '/design/pagination',     label: 'Pagination' },
-        ],
-      },
-      {
-        label: 'Charts',
-        items: [
-          { to: '/design/stat-card',   label: 'Stat Card' },
-          { to: '/design/radar-chart', label: 'Radar Chart' },
-          { to: '/design/line-chart',  label: 'Line Chart' },
-          { to: '/design/step-chart',  label: 'Step Chart' },
-          { to: '/design/bar-chart',   label: 'Bar Chart' },
         ],
       },
     ],
@@ -202,7 +202,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center px-(--padding-M) py-(--padding-S) rounded-(--radius-S) text-sm font-medium transition-colors ${
     isActive
       ? 'bg-(--bg-brand_tertiary) text-(--fg-brand_primary)'
-      : 'text-(--fg-secondary) hover:bg-(--bg-secondary) hover:text-(--fg-primary)'
+      : 'text-(--fg-primary) hover:bg-(--bg-secondary)'
   }`
 
 function SidebarNavLink({ to, label, end }: SidebarItem) {
@@ -229,9 +229,15 @@ function Sidebar() {
   return (
     <aside className="w-56 shrink-0 bg-(--bg-primary) border-r border-(--border-default) flex flex-col h-screen sticky top-0 overflow-y-auto">
       {/* Header */}
-      <div className="px-(--padding-L) py-(--padding-L) border-b border-(--border-default)">
-        <p className="text-xs font-semibold text-(--fg-tertiary) uppercase tracking-wider">Design system</p>
-        <p className="text-sm font-semibold text-(--fg-primary) mt-(--gap-XXS)">Mediterra</p>
+      <div className="px-(--padding-L) py-(--padding-M) border-b border-(--border-default) flex items-center gap-(--gap-S)">
+        <svg width="22" height="17" viewBox="0 0 22 16.8173" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+          <path d="M22 13.8691V16.812C21.8876 16.8152 21.7774 16.8173 21.6671 16.8173C19.4368 16.8173 17.5215 16.1217 15.9495 14.7433C14.2946 16.1947 12.2585 16.8881 9.87589 16.811V13.868C11.9477 13.9589 13.5637 13.2496 14.8165 11.702L15.9495 10.3024L17.0815 11.702C18.33 13.2443 19.9387 13.9536 22 13.8691Z" fill="var(--fg-brand_primary)"/>
+          <path d="M22 3.56664V6.50959C21.8876 6.51276 21.7774 6.51487 21.6671 6.51487C19.4368 6.51487 17.5215 5.8193 15.9495 4.44085C14.2946 5.89224 12.2585 6.5857 9.87589 6.50853V3.56558C11.9477 3.65649 13.5637 2.94718 14.8165 1.39959L15.9495 0L17.0815 1.39959C18.33 2.94189 19.9387 3.6512 22 3.56664Z" fill="var(--fg-brand_primary)"/>
+          <path d="M12.1241 8.50326V11.4462C12.0118 11.4494 11.9015 11.4515 11.7912 11.4515C9.56089 11.4515 7.64556 11.1788 6.07361 9.80031C4.4187 11.2517 2.38261 11.5223 0 11.4452V8.5022C2.07179 8.59311 3.68785 8.30664 4.94058 6.75905L6.07361 5.35946L7.20558 6.75905C8.45412 8.30136 10.0628 8.58783 12.1241 8.50326Z" fill="var(--fg-brand_primary)"/>
+        </svg>
+        <p style={{ fontFamily: 'var(--font-primary)', fontWeight: 800, fontSize: 15, lineHeight: '20px', color: 'var(--fg-primary)' }}>
+          Mediterra
+        </p>
       </div>
 
       <nav className="flex flex-col p-(--padding-S) gap-(--gap-XS) flex-1">
@@ -256,13 +262,13 @@ function Sidebar() {
                   <button
                     type="button"
                     onClick={() => toggleGroup(group.label)}
-                    className="flex items-center justify-between px-(--padding-M) py-(--padding-S) rounded-(--radius-S) text-xs font-semibold text-(--fg-quaterny) uppercase tracking-widest hover:bg-(--bg-secondary) transition-colors cursor-pointer"
+                    className="flex items-center justify-between px-(--padding-M) py-(--padding-S) rounded-(--radius-S) text-xs font-semibold text-(--fg-tertiary) uppercase tracking-widest hover:bg-(--bg-secondary) transition-colors cursor-pointer"
                   >
                     <span>{group.label}</span>
                     <ChevronDown
                       size={12}
                       stroke={2}
-                      color="var(--fg-quaterny)"
+                      color="var(--fg-tertiary)"
                       style={{
                         transform: isOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
                         transition: 'transform 150ms ease',
