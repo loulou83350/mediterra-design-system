@@ -115,14 +115,12 @@ export function Banner({
             className="shrink-0 hover:bg-(--bg-secondary) rounded-(--radius-S) p-(--padding-XS) transition-colors cursor-pointer"
             style={{ lineHeight: 0 }}
           >
-            <Icon
-              name="IconChevronDown"
-              size={24}
-              stroke={2}
-              color="var(--fg-secondary)"
+            <div
               className="transition-transform duration-[420ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-              style={{ transform: expand ? 'rotate(0deg)' : 'rotate(180deg)' } as React.CSSProperties}
-            />
+              style={{ transform: expand ? 'rotate(0deg)' : 'rotate(180deg)' }}
+            >
+              <Icon name="IconChevronDown" size={24} stroke={2} color="var(--fg-secondary)" />
+            </div>
           </button>
         )}
       </div>
@@ -189,14 +187,12 @@ export function Banner({
             className="shrink-0 hover:bg-(--bg-secondary) rounded-(--radius-S) p-(--padding-XS) transition-colors cursor-pointer"
             style={{ lineHeight: 0 }}
           >
-            <Icon
-              name="IconChevronDown"
-              size={24}
-              stroke={2}
-              color="var(--fg-secondary)"
+            <div
               className="transition-transform duration-[420ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-              style={{ transform: expand ? 'rotate(0deg)' : 'rotate(180deg)' } as React.CSSProperties}
-            />
+              style={{ transform: expand ? 'rotate(0deg)' : 'rotate(180deg)' }}
+            >
+              <Icon name="IconChevronDown" size={24} stroke={2} color="var(--fg-secondary)" />
+            </div>
           </button>
         )}
       </div>
