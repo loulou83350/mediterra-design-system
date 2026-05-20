@@ -12,6 +12,8 @@ Conçu pour être cloné et customisé : changer de design = modifier un seul fi
 ### Live demo
 👉 **https://mediterra-ds.vercel.app**
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/loulou83350/mediterra-design-system)
+
 ### Stack
 | Couche | Outil |
 |---|---|
@@ -54,17 +56,19 @@ Ouvre le projet dans **Claude Code** et écris :
 
 Claude lit `DESIGN-SYSTEM.md` pour comprendre les conventions (tokens, structure de fichiers, pattern des pages) et génère le composant directement.
 
-### Composants inclus (~40)
+### Composants inclus (~50)
 
 | Groupe | Composants |
 |---|---|
 | Actions | Button, Destructive Button |
 | Inputs | Text Field, Password, OTP Code, Select, Numeric Input, Text Area, Multi Select, Phone Number, Credit Card, File Upload |
-| Controls | Checkbox, Switch |
-| Display | Avatar, Badge, Card, Tag, Chip, Progress Bar, List Item |
+| Controls | Checkbox, Switch, Radio Button |
+| Display | Avatar, Badge, Card, Tag, Chip, Progress Bar, List Item, Head Icon |
 | Feedback | Alert, Notification, Tips, Modal & Drawer, Notification Item, Global Alert, Tooltip, Popover |
 | Navigation | Horizontal Stepper, Vertical Stepper, Circular Stepper |
 | Layout | Header Mobile, Banner, Bottom Bar, Tab Bar, Sidebar Navigation |
+| Page Control | Navigation Dot, Pagination |
+| Charts | Stat Card, Radar Chart, Line Chart, Step Chart, Bar Chart |
 
 ---
 
@@ -75,6 +79,8 @@ Designed to be cloned and customized: changing the visual identity = editing one
 
 ### Live demo
 👉 **https://mediterra-ds.vercel.app**
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/loulou83350/mediterra-design-system)
 
 ### Stack
 | Layer | Tool |
@@ -118,14 +124,16 @@ Open the project in **Claude Code** and write:
 
 Claude reads `DESIGN-SYSTEM.md` to understand conventions (tokens, file structure, page patterns) and generates the component directly.
 
-### Included components (~40)
+### Included components (~50)
 
 | Group | Components |
 |---|---|
 | Actions | Button, Destructive Button |
 | Inputs | Text Field, Password, OTP Code, Select, Numeric Input, Text Area, Multi Select, Phone Number, Credit Card, File Upload |
-| Controls | Checkbox, Switch |
-| Display | Avatar, Badge, Card, Tag, Chip, Progress Bar, List Item |
+| Controls | Checkbox, Switch, Radio Button |
+| Display | Avatar, Badge, Card, Tag, Chip, Progress Bar, List Item, Head Icon |
 | Feedback | Alert, Notification, Tips, Modal & Drawer, Notification Item, Global Alert, Tooltip, Popover |
 | Navigation | Horizontal Stepper, Vertical Stepper, Circular Stepper |
 | Layout | Header Mobile, Banner, Bottom Bar, Tab Bar, Sidebar Navigation |
+| Page Control | Navigation Dot, Pagination |
+| Charts | Stat Card, Radar Chart, Line Chart, Step Chart, Bar Chart |

@@ -47,6 +47,11 @@ import { RadioButtonPage } from './pages/RadioButtonPage'
 import { HeadIconPage } from './pages/HeadIconPage'
 import { NavigationDotPage } from './pages/NavigationDotPage'
 import { PaginationPage } from './pages/PaginationPage'
+import { StatCardPage } from './pages/StatCardPage'
+import { RadarChartPage } from './pages/RadarChartPage'
+import { LineChartPage } from './pages/LineChartPage'
+import { StepChartPage } from './pages/StepChartPage'
+import { BarChartPage } from './pages/BarChartPage'
 import { ColorsPage } from './pages/foundations/ColorsPage'
 import { TypographyPage } from './pages/foundations/TypographyPage'
 import { IconsPage } from './pages/foundations/IconsPage'
@@ -154,6 +159,16 @@ const sidebarSections: SidebarSection[] = [
         items: [
           { to: '/design/navigation-dot', label: 'Navigation Dot' },
           { to: '/design/pagination',     label: 'Pagination' },
+        ],
+      },
+      {
+        label: 'Charts',
+        items: [
+          { to: '/design/stat-card',   label: 'Stat Card' },
+          { to: '/design/radar-chart', label: 'Radar Chart' },
+          { to: '/design/line-chart',  label: 'Line Chart' },
+          { to: '/design/step-chart',  label: 'Step Chart' },
+          { to: '/design/bar-chart',   label: 'Bar Chart' },
         ],
       },
     ],
@@ -301,6 +316,11 @@ function DesignLayout() {
           <Route path="/design/head-icon"            element={<HeadIconPage />} />
           <Route path="/design/navigation-dot"       element={<NavigationDotPage />} />
           <Route path="/design/pagination"           element={<PaginationPage />} />
+          <Route path="/design/stat-card"            element={<StatCardPage />} />
+          <Route path="/design/radar-chart"          element={<RadarChartPage />} />
+          <Route path="/design/line-chart"           element={<LineChartPage />} />
+          <Route path="/design/step-chart"           element={<StepChartPage />} />
+          <Route path="/design/bar-chart"            element={<BarChartPage />} />
         </Routes>
       </main>
     </div>

@@ -99,6 +99,17 @@ const componentGroups = [
       { to: '/design/pagination',     label: 'Pagination' },
     ],
   },
+  {
+    label: 'Charts',
+    icon: 'IconChartLine',
+    items: [
+      { to: '/design/stat-card',   label: 'Stat Card' },
+      { to: '/design/radar-chart', label: 'Radar Chart' },
+      { to: '/design/line-chart',  label: 'Line Chart' },
+      { to: '/design/step-chart',  label: 'Step Chart' },
+      { to: '/design/bar-chart',   label: 'Bar Chart' },
+    ],
+  },
 ]
 
 const totalComponents = componentGroups.reduce((acc, g) => acc + g.items.length, 0)
