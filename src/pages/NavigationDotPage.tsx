@@ -15,7 +15,7 @@ export function NavigationDotPage() {
   return (
     <ComponentPage
       title="Navigation Dot"
-      description="Dot-based carousel or slide indicator. The selected dot becomes a pill shape; unselected dots are circles. Optional prev/next chevrons disable automatically at the boundaries."
+      description="Navigation Dots (or Page Indicators) are a simple UI component used primarily in carousels or multi-page interfaces to indicate the current page or slide and allow users to navigate between them. This component is most commonly used in mobile or touch interfaces where swiping between pages is common."
       controls={
         <>
           <Control label="Count">

@@ -16,7 +16,7 @@ export function RadioButtonPage() {
   return (
     <ComponentPage
       title="Radio Button"
-      description="The Radio Button lets users select a single option from a set. Use it when choices are mutually exclusive. Hover turns the ring blue; selecting turns it green; hover over a selected state turns it blue."
+      description="A Radio Button is a type of input control that allows users to select only one option from a predefined set of mutually exclusive options. Each radio button is paired with a label that describes the choice it represents. Once a radio button is selected, any previously selected option is automatically deselected. Radio buttons are ideal for scenarios where users must make a single selection from a list of options."
       controls={
         <>
           <Control label="Checked">

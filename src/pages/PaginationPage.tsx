@@ -16,7 +16,7 @@ export function PaginationPage() {
   return (
     <ComponentPage
       title="Pagination"
-      description="Standard page navigation component. Shows page numbers with ellipsis for large sets, and optional jump-to-first/last controls. Current page highlighted in brand blue; hover state in dark blue."
+      description="Pagination is a control component used to navigate through large sets of data that are spread across multiple pages. It is essential for managing content in lists, tables, or search results, ensuring that users can easily access different sections of the content without loading everything at once."
       controls={
         <>
           <Control label="Current Page">

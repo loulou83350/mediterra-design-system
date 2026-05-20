@@ -13,7 +13,7 @@ export function HeadIconPage() {
   return (
     <ComponentPage
       title="Head Icon"
-      description="A small icon badge used as a status or category indicator. Pairs a semantic color with a contextual icon. Used in notification items, alert headers, and card icons."
+      description="The Header Icon is a simple, yet impactful UI component used to visually represent key actions or states within a header or toolbar. This component consists of an icon, often with a colored background, making it easily recognizable and accessible for users. It is commonly used in both desktop and mobile applications to provide quick access to important actions or indicators."
       controls={
         <>
           <Control label="Color">
