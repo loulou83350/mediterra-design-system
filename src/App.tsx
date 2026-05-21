@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { useState } from 'react'
 import * as TablerIcons from '@tabler/icons-react'
 import { Agentation } from 'agentation'
@@ -539,6 +540,7 @@ function App() {
         <Route path="/*" element={<DesignLayout />} />
       </Routes>
       {import.meta.env.DEV && <Agentation />}
+      <Analytics />
     </BrowserRouter>
   )
 }
